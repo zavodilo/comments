@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=comments-mysql-docker;dbname=comments',
+    'username' => 'comments',
+    'password' => 'comments',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

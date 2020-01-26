@@ -1,9 +1,30 @@
 version: '2'
 services:
-  php:
+  base:
     image: yiisoftware/yii2-php:7.2-apache
+    container_name: comments-base-docker
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./:/app:delegated
     ports:
       - '7777:80'
+    networks:
+      - default
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: comments-mysql-docker
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=comments
+      - MYSQL_USER=comments
+      - MYSQL_PASSWORD=comments
+    volumes:
+      - "./database:/var/lib/mysql"
+    networks:
+      - default
+    ports:
+      - "3306:3306"
+
